@@ -2,13 +2,13 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-<h:head><title>Welcome to Java Beat  for seeing PrimeFaces_Spring_Hibernate_Project</title></h:head>
+<h:head><title>Persona</title></h:head>
 <h:body>
     <h:form>
         <table>
             <tr>
                 <td><h:outputLabel for="id" value="Id : " /></td>
-                <td><p:inputText id="id" value="#{customerMB.id}">
+                <td><p:inputText id="id" value="#{presentacionPersona.idPersona}">
                     <f:converter converterId="javax.faces.Integer"/>
                     <p:ajax event="blur" update="idMsg" />
                 </p:inputText>
@@ -16,26 +16,35 @@
                 </td>
             </tr>
             <tr>
-                <td><h:outputLabel for="name" value="Name : " /></td>
-                <td><p:inputText id="name" value="#{customerMB.name}">
+                <td><h:outputLabel for="nombres" value="Nombre : " /></td>
+                <td><p:inputText id="nombres" value="#{presentacionPersona.nombres}">
                     <f:validateLength minimum="5" />
                     <p:ajax event="blur" update="nameMsg" />
                 </p:inputText>
-                    <p:message id="nameMsg" for="name" display="icon"/>
+                    <p:message id="nameMsg" for="nombres" display="icon"/>
                 </td>
             </tr>
             <tr>
-                <td><h:outputLabel for="surname" value="Surname : " /></td>
-                <td><p:inputText id="surname" value="#{customerMB.surname}">
+                <td><h:outputLabel for="surname" value="Apellido : " /></td>
+                <td><p:inputText id="surname" value="#{presentacionPersona.apellidos}">
                     <f:validateLength minimum="5" />
                     <p:ajax event="blur" update="surnameMsg" />
                 </p:inputText>
                     <p:message id="surnameMsg" for="surname" display="icon"/>
                 </td>
             </tr>
+               <tr>
+                <td><h:outputLabel for="direccion" value="Direccion : " /></td>
+                <td><p:inputText id="direccion" value="#{presentacionPersona.direccionDomicilio}">
+                    <f:validateLength minimum="5" />
+                    <p:ajax event="blur" update="direccionMsg" />
+                </p:inputText>
+                    <p:message id="direccionMsg" for="direccion" display="icon"/>
+                </td>
+            </tr>
             <tr>
-                <td><p:commandButton id="addUser" value="Add" action="#{customerMB.addCustomer}" ajax="false"/></td>
-                <td><p:commandButton id="reset" value="Reset" action="#{customerMB.reset}" ajax="false"/></td>
+                <td><p:commandButton id="addUser" value="GUARDAR" action="#{presentacionPersona.guardarPersona}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="BORRAR" action="#{presentacionPersona.reset}" ajax="false"/></td>
             </tr>
         </table>
     </h:form>

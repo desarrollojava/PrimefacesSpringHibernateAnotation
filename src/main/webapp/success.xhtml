@@ -8,24 +8,30 @@
 <h:body>
     <h:form>
         <h:outputText value="customers : "></h:outputText>
-        <p:dataTable id="customers" var="customer" value="#{customerMB.customerList}" style="width: 10%">
+        <p:dataTable id="customers" var="person" value="#{presentacionPersona.listaPersonas}" style="width: 10%">
             <p:column>
                 <f:facet name="header">
                     <h:outputText value="ID" />
                 </f:facet>
-                <h:outputText value="#{customer.id}" />
+                <h:outputText value="#{person.idPersona}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Name" />
+                    <h:outputText value="Nombres" />
                 </f:facet>
-                <h:outputText value="#{customer.name}" />
+                <h:outputText value="#{person.nombres}" />
             </p:column>
             <p:column>
                 <f:facet name="header">
-                    <h:outputText value="Surname" />
+                    <h:outputText value="Apellidos" />
                 </f:facet>
-                <h:outputText value="#{customer.surname}" />
+                <h:outputText value="#{person.apellidos}" />
+            </p:column>
+             <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Direccion" />
+                </f:facet>
+                 <h:outputText value="#{person.direccionDomicilio}" />
             </p:column>
         </p:dataTable>
     </h:form>

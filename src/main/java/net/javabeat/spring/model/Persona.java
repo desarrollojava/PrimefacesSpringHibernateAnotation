@@ -21,15 +21,14 @@ public class Persona {
      */
     @Id
     @Column(name = "idPersona", unique = true, nullable = false)
-      public int getIdPersona() {
+    public int getIdPersona() {
         return idPersona;
     }
 
     public void setIdPersona(int idPersona) {
         this.idPersona = idPersona;
     }
-    
-    
+
     @Column(name = "nombres", unique = true, nullable = false)
     public String getNombres() {
         return nombres;
@@ -38,8 +37,7 @@ public class Persona {
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
-    
-    
+
     @Column(name = "apellidos", unique = true, nullable = false)
     public String getApellidos() {
         return apellidos;
@@ -48,14 +46,11 @@ public class Persona {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
-    
-    
+
     @Column(name = "direccionDomicilio", unique = true, nullable = false)
     public String getDireccionDomicilio() {
         return direccionDomicilio;
     }
-
-   
 
     public void setDireccionDomicilio(String direccionDomicilio) {
         this.direccionDomicilio = direccionDomicilio;
@@ -63,8 +58,14 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + ", nombres=" + nombres + ", apellidos=" + apellidos + ", direccionDomicilio=" + direccionDomicilio + '}';
+        StringBuffer strBuff = new StringBuffer();
+        strBuff.append("idPersona : ").append(getIdPersona());
+        strBuff.append(", nombres : ").append(getNombres());
+        strBuff.append(", apellidos : ").append(getApellidos());
+        strBuff.append(", direccionDomicilio : ").append(getApellidos());
+
+        return strBuff.toString();
+//        return "Persona{" + "idPersona=" + idPersona + ", nombres=" + nombres + ", apellidos=" + apellidos + ", direccionDomicilio=" + direccionDomicilio + '}';
     }
 
-  
 }
