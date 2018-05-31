@@ -3,39 +3,39 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context 
+                http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	    http://www.springframework.org/schema/tx 
+            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+>
 
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
-        >
-
-    <context:component-scan base-package="net.javabeat.spring"/>
+    <context:component-scan base-package="com"/>
     <context:annotation-config/>
     <context:spring-configured/>
 
     <!-- Data Source Declaration -->
-     <bean id="DataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+    <bean id="DataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
          
         <property name="driverClassName"   value="com.mysql.jdbc.Driver" />
-        <property name="url"  value="jdbc:mysql://localhost/dbdonacion"/>
+        <property name="url"  value="jdbc:mysql://localhost/dbtransaccion"/>
         <property name="username"  value="root"/>
-        <property name="password"   value="simulacion1"/>
+        <property name="password"   value="admin"/>
     </bean>
 
 
     <!-- Session Factory Declaration -->
     <bean id="SessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="DataSource" />
-       <!-- <property name="packagesToScan">
+        <!-- <property name="packagesToScan">
             <list>
                 <value>net.javabeat.spring.model</value>
             </list>
         </property>-->
         <property name="annotatedClasses">
             <list>
-                <value>net.javabeat.spring.model.Customer</value>
-                <value>net.javabeat.spring.model.Persona</value>
+                <value>com.modelo.Persona</value>
             </list>
         </property>
         <property name="hibernateProperties">

@@ -3,19 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.javabeat.spring.dao;
+package com.servicio;
 
 import java.util.List;
-import net.javabeat.spring.model.Persona;
-import org.hibernate.SessionFactory;
+import com.dao.IPersonaDao;
+import com.modelo.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@Repository
-public class IPersonaDaoImpl implements IPersonaDao {
+@Service("IPersonaServicioImpl")
+@Transactional(readOnly = true)
+public class IPersonaServicioImpl implements IPersonaServicio {
 
     @Autowired
-    private SessionFactory sessionFactory;
+    IPersonaDao IPersonaDao;
+
+    @Override
+    public List<Persona> listarPersonas() {
+        return getIPersonaDao().listarPersonas();
+    }
 
     @Override
     public Persona recuperarPersonaPorId(int idPersona) {
@@ -28,8 +35,9 @@ public class IPersonaDaoImpl implements IPersonaDao {
     }
 
     @Override
+    @Transactional
     public void agregarPersona(Persona persona) {
-        getSessionFactory().getCurrentSession().save(persona);
+        getIPersonaDao().agregarPersona(persona);
     }
 
     @Override
@@ -47,18 +55,12 @@ public class IPersonaDaoImpl implements IPersonaDao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
+    public IPersonaDao getIPersonaDao() {
+        return IPersonaDao;
     }
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    @Override
-    public List<Persona> listarPersonas() {
-        List list = getSessionFactory().getCurrentSession().createQuery("from net.javabeat.spring.model.Persona").list();
-        return list;
+    public void setIPersonaDao(IPersonaDao IPersonaDao) {
+        this.IPersonaDao = IPersonaDao;
     }
 
 }

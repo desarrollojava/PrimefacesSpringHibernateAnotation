@@ -3,26 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.javabeat.spring.service;
+package com.dao;
 
 import java.util.List;
-import net.javabeat.spring.dao.IPersonaDao;
-import net.javabeat.spring.model.Persona;
+import com.modelo.Persona;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Repository;
 
-@Service("IPersonaServicioImpl")
-@Transactional(readOnly = true)
-public class IPersonaServicioImpl implements IPersonaServicio {
+@Repository
+public class IPersonaDaoImpl implements IPersonaDao {
 
     @Autowired
-    IPersonaDao IPersonaDao;
-
-    @Override
-    public List<Persona> listarPersonas() {
-        return getIPersonaDao().listarPersonas();
-    }
+    private SessionFactory sessionFactory;
 
     @Override
     public Persona recuperarPersonaPorId(int idPersona) {
@@ -35,9 +28,8 @@ public class IPersonaServicioImpl implements IPersonaServicio {
     }
 
     @Override
-    @Transactional
     public void agregarPersona(Persona persona) {
-        getIPersonaDao().agregarPersona(persona);
+        getSessionFactory().getCurrentSession().save(persona);
     }
 
     @Override
@@ -55,12 +47,18 @@ public class IPersonaServicioImpl implements IPersonaServicio {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public IPersonaDao getIPersonaDao() {
-        return IPersonaDao;
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
     }
 
-    public void setIPersonaDao(IPersonaDao IPersonaDao) {
-        this.IPersonaDao = IPersonaDao;
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    @Override
+    public List<Persona> listarPersonas() {
+        List list = getSessionFactory().getCurrentSession().createQuery("from Persona").list();
+        return list;
     }
 
 }

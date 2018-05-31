@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.javabeat.spring.service;
+package com.servicio;
 
 import java.util.List;
-import net.javabeat.spring.model.Persona;
+import com.modelo.Persona;
 
 /**
  *
